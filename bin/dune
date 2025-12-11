@@ -1,0 +1,10 @@
+(executable
+ (public_name main)
+ (name main)
+ ;  (modes byte)
+ (modules main)
+ (libraries
+  dynlink
+  compiler-libs.optcomp
+  ; compiler-libs.toplevel
+  metaocaml))
