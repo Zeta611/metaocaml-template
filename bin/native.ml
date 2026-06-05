@@ -1,4 +1,3 @@
-(* let run = Runcode.run *)
 let run = Runnative.run
 
 let () =
@@ -10,5 +9,7 @@ let () =
          in
          pow 1 n >.
   in
-  let pow3 = run (staged_pow 3) in
+  let code = staged_pow 3 in
+  Format.printf "@[%a@]@." Codelib.print_code code;
+  let pow3 = run code in
   Printf.printf "pow3 2 = %d\n%!" (pow3 2)

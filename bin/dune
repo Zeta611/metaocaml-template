@@ -1,10 +1,15 @@
 (executable
- (public_name main)
- (name main)
- ;  (modes byte)
- (modules main)
- (libraries
-  dynlink
-  compiler-libs.optcomp
-  ; compiler-libs.toplevel
-  metaocaml))
+ (public_name native)
+ (name native)
+ (modules native)
+ ; `metaocaml` (../findlib/metaocaml/META, on OCAMLPATH via the flake devShell)
+ ; links Runnative and pulls compiler-libs.optcomp
+ (libraries metaocaml))
+
+; links Runcode and pulls compiler-libs.toplevel
+(executable
+ (public_name byte)
+ (name byte)
+ (modules byte)
+ (modes byte_complete)
+ (libraries metaocaml.byte))

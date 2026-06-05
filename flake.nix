@@ -56,6 +56,14 @@
             ++ [
               nodejs
             ];
+          # BER MetaOCaml ships Codelib/Runnative as bare compilation units in
+          # the compiler's stdlib dir, with no findlib package -- so dune can't
+          # find a "metaocaml" library. ./findlib holds a synthetic META that
+          # wraps them; put it on OCAMLPATH (prepended to the value opam-nix
+          # already set) so `dune build` resolves `(libraries metaocaml)`.
+          shellHook = ''
+            export OCAMLPATH="$PWD/findlib''${OCAMLPATH:+:$OCAMLPATH}"
+          '';
         };
       }
     );
