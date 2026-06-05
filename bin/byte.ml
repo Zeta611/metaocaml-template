@@ -1,6 +1,10 @@
 let run = Runcode.run
 
 let () =
+  Compmisc.init_path ();
+  Toploop.toplevel_env := Compmisc.initial_env ()
+
+let () =
   (* Stage a power function specialized for a given exponent *)
   let staged_pow n =
     .< fun x ->
@@ -13,3 +17,10 @@ let () =
   Format.printf "@[%a@]@." Codelib.print_code code;
   let pow3 = run code in
   Printf.printf "pow3 2 = %d\n%!" (pow3 2)
+
+let () =
+  (* CSP example *)
+  let code = .< fun x -> x :: [] >. in
+  Format.printf "@[%a@]@." Codelib.print_code code;
+  let f = run code in
+  Printf.printf "f 6 = [%d]\n%!" (List.hd (f 6))

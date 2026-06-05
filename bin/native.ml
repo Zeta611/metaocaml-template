@@ -13,3 +13,10 @@ let () =
   Format.printf "@[%a@]@." Codelib.print_code code;
   let pow3 = run code in
   Printf.printf "pow3 2 = %d\n%!" (pow3 2)
+
+let () =
+  (* CSP example *)
+  let code = .< fun x -> x :: [] >. in
+  Format.printf "@[%a@]@." Codelib.print_code code;
+  let f = run code in
+  Printf.printf "f 42 = [%d]\n%!" (List.hd (f 42))
